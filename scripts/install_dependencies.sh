@@ -1,14 +1,16 @@
 # Install dependencies script
 
+set -e
+
 if [ $ARCH == "linux_x86_64" ]; then
   sudo apt-get install -y build-essential bison flex libreadline-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
-                          gcc-5 g++-5
+                          gcc g++
   sudo apt-get autoremove -y
-  sudo update-alternatives \
-    --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 \
-    --slave /usr/bin/g++ g++ /usr/bin/g++-5
+ # sudo update-alternatives \
+ #   --install /usr/bin/gcc gcc /usr/bin/gcc 60 \
+ #   --slave /usr/bin/g++ g++ /usr/bin/g++
   gcc --version
   g++ --version
 fi
@@ -17,11 +19,11 @@ if [ $ARCH == "linux_i686" ]; then
   sudo apt-get install -y build-essential bison flex libreadline-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
-                          gcc-5-multilib g++-5-multilib
+                          gcc-multilib g++-multilib
   sudo apt-get autoremove -y
-  sudo update-alternatives \
-    --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 \
-    --slave /usr/bin/g++ g++ /usr/bin/g++-5
+ # sudo update-alternatives \
+ #   --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 \
+ #   --slave /usr/bin/g++ g++ /usr/bin/g++-5
   gcc --version
   g++ --version
 fi
@@ -52,12 +54,12 @@ if [ $ARCH == "windows_x86" ]; then
   sudo apt-get install -y build-essential bison flex libreadline-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
-                          gcc-5-mingw-w64 gc++-5-mingw-w64 wine
+                          gcc-5-mingw-w64 g++-5-mingw-w64 wine 
                           #mingw-w64 mingw-w64-tools
   sudo apt-get autoremove -y
-  sudo update-alternatives \
-    --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 60 \
-    --slave /usr/bin/i686-w64-mingw32-g++ i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-5
+ # sudo update-alternatives \
+ #   --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 60 \
+ #   --slave /usr/bin/i686-w64-mingw32-g++ i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-5
   i686-w64-mingw32-gcc --version
   i686-w64-mingw32-g++ --version
 fi
@@ -66,12 +68,12 @@ if [ $ARCH == "windows_amd64" ]; then
   sudo apt-get install -y build-essential bison flex libreadline-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
-                          gcc-5-mingw-w64 gc++-5-mingw-w64 wine
+                          gcc-mingw-w64 g++-mingw-w64 wine
                           #mingw-w64 mingw-w64-tools
   sudo apt-get autoremove -y
-  sudo update-alternatives \
-    --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-5 60 \
-    --slave /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-5
+  #sudo update-alternatives \
+  #  --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-5 60 \
+  #  --slave /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-5
   x86_64-w64-mingw32-gcc --version
   x86_64-w64-mingw32-g++ --version
 fi
